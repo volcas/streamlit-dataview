@@ -190,9 +190,12 @@ st.subheader('Q-transform')
 hq = strain.q_transform(outseg=(t0-dt, t0+dt), qrange=qrange)
 
 with _lock:
-    fig4 = hq.plot()
+    fig4 = hq.plot(vmax=vmax, vmin=0)
     ax = fig4.gca()
-    fig4.colorbar(label="Normalised energy", vmax=vmax, vmin=0)
+    try:
+        fig4.colorbar(label="Normalised energy")        
+    except:
+        pass
     ax.grid(False)
     ax.set_yscale('log')
     ax.set_ylim(bottom=15)
